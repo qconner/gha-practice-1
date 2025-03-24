@@ -1,14 +1,16 @@
 name: Automated Tests
-on: workflow_dispatch
+on: [ workflow_dispatch, push ]
 jobs:
   first-job:
     runs-on: ubuntu-latest
     steps:
       - name: greetings
         run: date
-      - name: checkout main
+      - name: checkout sample nodejs React project
         uses: actions/checkout@v3
-      - name: nodejs dependencies
+      - name: ensure nodejs dependencies are installed
         run: npm ci
-      - name: automated tests
+      - name: run automated tests
         run: npm test
+      - name: goodbye
+        run: date
