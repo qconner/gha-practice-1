@@ -1,4 +1,4 @@
-name: Automated Tests
+name: Run Automated Tests on push or manual dispatch
 on: [ workflow_dispatch, push ]
 jobs:
   build-and-test:
@@ -6,20 +6,18 @@ jobs:
     steps:
       - name: greetings
         run: date
-      - name: past history
-        run: fc -l
-      - name: pwd
-        run: pwd
-      - name: ls
-        run: ls -alF
       - name: nodejs install
         uses: actions/setup-node@v3
         with:
           node-version: 18
       - name: checkout sample nodejs React project
         uses: actions/checkout@v3
+      - name: ls
+        run: ls -alF
       - name: ensure nodejs dependencies are installed
         run: npm ci
+      - name: ls
+        run: ls -alF
       - name: run automated tests
         run: npm test
       - name: goodbye
