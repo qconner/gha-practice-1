@@ -12,8 +12,8 @@ jobs:
           node-version: 18
       - name: checkout sample nodejs React project
         uses: actions/checkout@v3
-      - name: ls
-        run: ls -alF
+      - name: github context
+        run: echo "${{ toJSON(github) }}"
       - name: ensure nodejs dependencies are installed
         run: npm ci
       - name: ls
