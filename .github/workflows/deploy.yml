@@ -1,0 +1,30 @@
+name: Integration tests and Deploy
+on: [ workflow_dispatch, push ]
+jobs:
+  automated-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: nodejs install
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: checkout sample nodejs React project
+        uses: actions/checkout@v3
+      - name: ensure nodejs dependencies are installed
+        run: npm ci
+      - name: run automated tests
+        run: npm test
+  deploy:
+    runs-on: ubuntu-latest
+    needs: automated-tests
+    steps:
+      - name: nodejs install
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: checkout sample nodejs React project
+        uses: actions/checkout@v3
+      - name: ensure nodejs dependencies are installed
+        run: npm ci
+      - name: fake deploy
+        run: npm run build
