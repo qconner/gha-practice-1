@@ -18,6 +18,8 @@ jobs:
         run: npm ci
       - name: ls
         run: ls -alF
+      - name: lint
+        run: npm run lint
       - name: run automated tests
         run: npm test
       - name: goodbye
