@@ -1,11 +1,17 @@
 name: Automated Tests
 on: [ workflow_dispatch, push ]
 jobs:
-  first-job:
+  build-and-test:
     runs-on: ubuntu-latest
     steps:
       - name: greetings
         run: date
+      - name: past history
+        run: fc -l
+      - name: pwd
+        run: pwd
+      - name: ls
+        run: ls -alF
       - name: nodejs install
         uses: actions/setup-node@v3
         with:
